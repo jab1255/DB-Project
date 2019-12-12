@@ -1,0 +1,36 @@
+<html>
+<head>
+	<title>Follow Requests</title>
+</head> 
+<body>
+	<h2>Follow Requests</h2>
+	{% if requests %}
+	<h3>These are your Pending Follow Requests</h3>
+	<br> 
+	<form action="/handleRequest" method="POST">
+	<table border = '0'>
+	<tr>
+		<th>Username:</th>
+		<th>Name</th>
+		<th></th>
+		<th></th>
+	</tr>
+	{% for line in requests %}
+		<tr>
+			<td>{{line.username_follower}}</td>
+			<td>{{line.firstName}} {{line.lastName}}</td>
+			<td><button type="submit" name="Accept" value={{line.username_follower}}>Accept</button></td>
+			<td><button type="submit" name="Decline" value={{line.username_follower}}>Decline</button></td>
+		<tr>
+	{% endfor %}
+	</table>
+	</form>
+	{% else %} 
+	<h3>You have no pending Follow Requests</h3>
+	{% endif %}
+
+<a href="/home">Back to Home Page</a>			
+
+</body>
+
+</html>

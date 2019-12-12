@@ -1,0 +1,46 @@
+<html>
+<head>
+	<title>Search Results</title>
+</head>
+<body>
+
+{% if msg %}
+	<hr>
+	{{msg}}
+	<hr>
+{% endif %}
+
+{% if users %}
+<hr>
+<h2>Search Results:</h2>
+<form action="/follow" method="POST">
+<table border ='0'>
+<tr>
+	<th>Username</th>
+	<th>Name</th>
+	<th></th>
+</tr>
+
+{% for line in users %}
+	<tr>
+	<td>{{line.username}}&nbsp&nbsp</td>
+	<td>{{line.firstName}} {{line.lastName}}&nbsp&nbsp</td>
+	<td><button type="submit" name="follow" value={{line.username}}>Follow</button></td>
+	</tr>
+{% endfor %}
+</form>
+</table>
+<hr>
+{% endif %}
+
+<form action="/search" method="POST">
+<input type="text" name="peer" placeholder="Username">
+<input type="submit" value="New Search">
+</form>
+
+<br>
+<a href="/home">Back to Home</a>
+
+</body>
+
+</html>

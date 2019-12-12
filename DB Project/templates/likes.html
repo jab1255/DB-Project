@@ -1,0 +1,27 @@
+<html>
+<head>
+	<title>Likes</title>
+</head>
+<body>
+	<h2> Photo {{photo.photoID}}</h2>
+	<table border = "0">
+		<th></th><th></th>
+	<tr>
+		<td><img src="/image/{{photo.filepath}}" width="300"/><br>
+		Posted by: {{photo.photoPoster}}</td>
+	{% if likes %}
+	<td><h3>Users who liked this photo:</h3>
+		{% for line in likes %}
+			{{line.firstName}} {{line.lastName}}({{line.username}}) - Rating: {{line.rating}}<br>
+		{% endfor %}
+	</td>
+	{% else %}
+		<td><h3>Photo has no likes</h3></td>
+	{% endif %}
+	</table>
+	<br><button onclick="self.close()">Close</button>
+</body>
+</html>
+
+
+	

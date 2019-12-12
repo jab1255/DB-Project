@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>Finstagram</title>
+    </head>
+    <body>
+        <h1>Hello, {{ username }}!</h1>
+	<hr>
+	<form action="/search" method="POST">
+	&nbsp&nbsp<input type="text" name="peer" placeholder="Username">
+	<input type="submit" value="Search">
+	</form>
+	<hr>
+	<table border = '0'>
+	<tr>
+	<td>&nbsp&nbsp<a href = "/upload">Post a Photo</a>&nbsp&nbsp&nbsp&nbsp</td>
+	<td>&nbsp&nbsp<a href = "/followRequests">Follow Requests&nbsp</a>&nbsp</td>
+	<td>&nbsp&nbsp<a href = "/showTags">Manage Tags</a>&nbsp&nbsp</td>
+	<td>&nbsp&nbsp<a href="/logout">Logout</a>&nbsp&nbsp</td>
+	</tr>
+	</table>
+	<hr>
+
+<h3>Here are your available photos:</h3>
+
+
+{% for line in posts %}
+	<p>
+	{{line.firstName}} {{line.lastName}}({{line.photoPoster}})&nbsp&nbspPhoto ID: {{line.photoID}}<br>
+	<img src="/image/{{line.filepath}}" width="300"/><br>
+	Posted on: {{line.postingdate}}&nbsp&nbsp 
+	<a href="/likes/{{line.photoID}}" target="_blank">Likes</a>&nbsp&nbsp 
+	<a href="/tags/{{line.photoID}}" target="_blank">Tags</a><br> 
+	</p>
+	<hr>
+{% endfor %}
+
+</body>
+
+</html>

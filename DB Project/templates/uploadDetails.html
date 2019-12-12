@@ -1,0 +1,31 @@
+<html>
+<head>
+	<title>Upload Details</title>
+</head>
+<body>
+	<h3>Your Photo was succesfully uploaded!</h3>
+	<h3>Photo ID: {{photo.photoID}} </h3>
+	<img src="/image/{{photo.filepath}}" width="300"/>
+	<br><br>
+	Please provide more details on your upload
+	<br><br>
+	<form action="/processDetails" method="post">
+	Caption: <input type="text" name="caption" maxlenght="100">
+	<br><br>
+	Share with all your Followers?
+	<input type="radio" name="allFollowers" value=1 required>Yes</input> 
+	<input type="radio" name="allFollowers" value=0>No</input>
+	<br><br>
+	{% if friendGroups %}
+		Share with your Friend Groups? <br>
+		{% for line in friendGroups %}
+			<input type="checkbox" name="groups" value="{{line.groupName}}|{{line.groupOwner}}">{{line.groupName}}<sub>owned by: {{line.groupOwner}}</sub>
+			<br>
+		{% endfor %}
+		</input>
+		<br><br>
+	{% endif %}
+	<button type="submit" name="post" value={{photo.photoID}}>Submit</button>
+
+
+	

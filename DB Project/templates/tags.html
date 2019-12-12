@@ -1,0 +1,56 @@
+<html>
+<head>
+	<title>Tags</title>
+</head>
+<body>
+	<h2> Photo {{photo.photoID}}</h2>
+	{% if msg %}
+	<h3> {{msg}} </h3>
+	{% endif %}
+	<table border = "0">
+		<th></th><th></th>
+	<tr>
+		<td><img src="/image/{{photo.filepath}}" width="300"/><br>
+		Posted by: {{photo.photoPoster}}</td>
+	{% if tags %}
+	<td><h3>Users tagged on this photo:</h3>
+		{% for line in tags %}
+			{{line.firstName}} {{line.lastName}}({{line.username}})<br>
+		{% endfor %}
+	</td>
+	{% else %}
+		<td><h3>Photo has no tags</h3></td>
+	{% endif %}
+	</tr>
+	</table>
+	
+	{% if results %}
+		<hr>
+		<h4>Search Results:</h4>
+		<form action="/tags/{{photo.photoID}}" method="POST">
+		<table border ='0'>
+		<tr>
+			<th>Username</th>
+			<th>Name</th>
+			<th></th>
+		</tr>
+		{% for line in results %}
+			<tr>
+			<td>{{line.username}}&nbsp&nbsp</td>
+			<td>{{line.firstName}} {{line.lastName}}&nbsp&nbsp</td>
+			<td><button type="submit" name="NewTag" value={{line.username}}>Tag User</button></td>
+			</tr>
+		{% endfor %}
+		</form>
+		</table>
+		<hr>
+	{% else %}
+		<h4> Want to propose a tag? </h4>
+		<form action="/tags/{{photo.photoID}}" method="POST">
+		<input type="text" name="peer" placeholder="Username">
+		<input type="submit" value="Search">
+		</form>
+	{% endif %}
+	<br><button onclick="self.close()">Close</button>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<html>
+<head>
+	<title>Manage Tags</title>
+</head>
+<body>
+	<h2> Tag Requests </h2>
+	{% if requests %}
+	<h3>Your pending Tags:</h3> 
+	<form action="/manageTags" method="POST">
+	<table border = "0">
+	<th></th><th></th>
+	{% for line in requests %}
+	<tr>
+	<td>Photo ({{line.photoID}})posted by {{line.photoPoster}} on {{line.postingdate}}<br>
+	<img src="/image/{{line.filepath}}" width="300"/><br></td>
+	<td>&nbsp&nbsp<button type="submit" name="Accept" value={{line.photoID}}>Accept Tag</button>
+	&nbsp&nbsp<button type="submit" name="Decline" value={{line.photoID}}>Decline Tag</button>
+	</td>
+	<hr>
+	{% endfor %}
+	</table>
+	</form>
+	{% else %}
+	<h3>You have no pending Tag Requests</h3>
+	{% endif %}
+
+<a href="/home">Go back to home</a>
+
+</body>
+
+
+</html>
+
+
